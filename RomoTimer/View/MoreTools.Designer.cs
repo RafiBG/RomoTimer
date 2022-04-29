@@ -250,7 +250,7 @@
             this.btnCurrencyConverter.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnCurrencyConverter.Size = new System.Drawing.Size(183, 58);
             this.btnCurrencyConverter.TabIndex = 53;
-            this.btnCurrencyConverter.Text = "Currency Converter (internet)";
+            this.btnCurrencyConverter.Text = "Currency Converter (requires internet)";
             this.btnCurrencyConverter.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnCurrencyConverter.UseAccentColor = false;
             this.btnCurrencyConverter.UseVisualStyleBackColor = false;
@@ -306,7 +306,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 480);
+            this.ClientSize = new System.Drawing.Size(383, 519);
             this.Controls.Add(this.btnLogoutt);
             this.Controls.Add(this.lblLoggedUser);
             this.Controls.Add(this.lblDisplayName);

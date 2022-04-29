@@ -162,7 +162,7 @@
             this.MoreToolsRomoTimer1.NoAccentTextColor = System.Drawing.Color.Empty;
             this.MoreToolsRomoTimer1.Size = new System.Drawing.Size(107, 44);
             this.MoreToolsRomoTimer1.TabIndex = 110;
-            this.MoreToolsRomoTimer1.Text = "More Tools";
+            this.MoreToolsRomoTimer1.Text = "Go back";
             this.MoreToolsRomoTimer1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.MoreToolsRomoTimer1.UseAccentColor = false;
             this.MoreToolsRomoTimer1.UseVisualStyleBackColor = false;

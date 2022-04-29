@@ -5,8 +5,6 @@ using RomoTimer.Model;
 using RomoTimerForm.Controller;
 using RomoTimerForm.View;
 using System;
-using System.Media;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RomoTimer.View.RomoTimerTasks
@@ -14,7 +12,6 @@ namespace RomoTimer.View.RomoTimerTasks
     public partial class RomoTimerTasks2 : MaterialForm
     {
         RomoTasksController romoTasksController = new RomoTasksController();
-        private SoundPlayer playBeepSound;
 
         private int sixty = 60;
         private int forty = 40;
@@ -30,7 +27,7 @@ namespace RomoTimer.View.RomoTimerTasks
         public RomoTimerTasks2(MaterialForm parent)
         {
             InitializeComponent();
-            playBeepSound = new SoundPlayer(@"C:\Users\Rafi\Desktop\RomoTimer\RomoTimer\Resources\Sounds\Three.wav");
+            RomoTimerController.BeepSoundDirectory();
             _parent = parent;
 
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -43,52 +40,7 @@ namespace RomoTimer.View.RomoTimerTasks
         private void RomoTimerTasks2_Load(object sender, EventArgs e)
         {
             lblDisplayName.Text = Login.displayName;   //display logged username
-
-            SettingsController settingsController = new SettingsController();
-            bool isDarkTheme = settingsController.IsDarkTheme();
-            if (isDarkTheme)
-            {
-                isDarkTheme = true;
-                TManager.Theme = MaterialSkinManager.Themes.DARK;
-            }
-            else
-            {
-                isDarkTheme = false;
-                TManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            }
-
-            //check if is BlueScheme is true set it on blue
-            bool isBlueScheme = settingsController.IsBlueScheme();
-            if (isBlueScheme)
-            {
-                isBlueScheme = true;
-                TManager.ColorScheme = new ColorScheme(Primary.Blue800,
-                Primary.Blue900, Primary.Blue500, Accent.LightBlue200, TextShade.WHITE);
-            }
-            //check if is RedScheme is true set it on red
-            bool isRedScheme = settingsController.IsRedScheme();
-            if (isRedScheme)
-            {
-                isRedScheme = true;
-                TManager.ColorScheme = new ColorScheme(Primary.Red800,
-                Primary.Red900, Primary.Red500, Accent.Red200, TextShade.WHITE);
-            }
-            //chekc if is GreenScheme is true set it on green
-            bool isGreenScheme = settingsController.IsGreenScheme();
-            if (isGreenScheme)
-            {
-                isGreenScheme = true;
-                TManager.ColorScheme = new ColorScheme(Primary.Green800,
-                Primary.Green900, Primary.Green500, Accent.LightGreen200, TextShade.WHITE);
-            }
-            //chekc if is OrangeScheme is true set it on orange
-            bool isOrangeScheme = settingsController.IsOrangeScheme();
-            if (isOrangeScheme)
-            {
-                isOrangeScheme = true;
-                TManager.ColorScheme = new ColorScheme(Primary.Orange800,
-                Primary.Orange900, Primary.Orange500, Accent.Orange200, TextShade.WHITE);
-            }
+            SettingsController.SavedSettings();
         }
 
         private void RomoTimerTasks2_FormClosed(object sender, FormClosedEventArgs e)
@@ -210,7 +162,7 @@ namespace RomoTimer.View.RomoTimerTasks
             if (this.timeLeftMinutes == 0)
             {
                 timer1.Stop();
-                playBeepSound.Play();
+                RomoTimerController.PlayBeepSound();
                 MessageBox.Show("Your time is up.");
             }
             else
@@ -227,7 +179,7 @@ namespace RomoTimer.View.RomoTimerTasks
             if (this.timeLeftMinutes == 0)
             {
                 timer2.Stop();
-                playBeepSound.Play();
+                RomoTimerController.PlayBeepSound();
                 MessageBox.Show("Your time is up.");
             }
             else
@@ -244,7 +196,7 @@ namespace RomoTimer.View.RomoTimerTasks
             if (this.timeLeftMinutesBreak == 0)
             {
                 Breaktimer2.Stop();
-                playBeepSound.Play();
+                RomoTimerController.PlayBeepSound();
                 MessageBox.Show("Break time is over.");
             }
             else

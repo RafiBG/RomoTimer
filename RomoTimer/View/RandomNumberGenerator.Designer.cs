@@ -66,7 +66,7 @@
             this.MoreToolsRNG.NoAccentTextColor = System.Drawing.Color.Empty;
             this.MoreToolsRNG.Size = new System.Drawing.Size(116, 44);
             this.MoreToolsRNG.TabIndex = 40;
-            this.MoreToolsRNG.Text = "More Tools";
+            this.MoreToolsRNG.Text = "Go back";
             this.MoreToolsRNG.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.MoreToolsRNG.UseAccentColor = false;
             this.MoreToolsRNG.UseVisualStyleBackColor = false;
@@ -274,7 +274,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Random Number Generator";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RandomNumberGenerator_FormClosed);
-            this.Load += new System.EventHandler(this.RandomNumberGenerator_Load);
+            this.Load += new System.EventHandler(this.RandomNumberGenerator_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 

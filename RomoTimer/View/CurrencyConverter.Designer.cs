@@ -173,7 +173,7 @@
             this.btnMoreTools.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnMoreTools.Size = new System.Drawing.Size(80, 50);
             this.btnMoreTools.TabIndex = 56;
-            this.btnMoreTools.Text = "More Tools";
+            this.btnMoreTools.Text = "Go back";
             this.btnMoreTools.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnMoreTools.UseAccentColor = false;
             this.btnMoreTools.UseVisualStyleBackColor = false;

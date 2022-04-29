@@ -166,8 +166,6 @@
             this.txtPassword_login.TrailingIcon = null;
             this.txtPassword_login.UseSystemPasswordChar = false;
             this.txtPassword_login.ValidatingType = null;
-            this.txtPassword_login.Click += new System.EventHandler(this.txtPassword_login_Click);
-            this.txtPassword_login.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_login_KeyDown);
             // 
             // materialLabel1
             // 

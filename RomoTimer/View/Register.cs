@@ -28,53 +28,7 @@ namespace RomoTimerForm.View
 
         private void Register_Load(object sender, EventArgs e)
         {
-
-            SettingsController settingsController = new SettingsController();
-            bool isDarkTheme = settingsController.IsDarkTheme();
-            if (isDarkTheme)
-            {
-                //isDarkTheme = BitConverter.ToBoolean(TManager.Theme = MaterialSkinManager.Themes.DARK);
-                isDarkTheme = true;
-                TManager.Theme = MaterialSkinManager.Themes.DARK;
-            }
-            else
-            {
-                isDarkTheme = false;
-                TManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            }
-
-            //check if is BlueScheme is true set it on blue
-            bool isBlueScheme = settingsController.IsBlueScheme();
-            if (isBlueScheme)
-            {
-                isBlueScheme = true;
-                TManager.ColorScheme = new ColorScheme(Primary.Blue800,
-                Primary.Blue900, Primary.Blue500, Accent.LightBlue200, TextShade.WHITE);
-            }
-            //check if is RedScheme is true set it on red
-            bool isRedScheme = settingsController.IsRedScheme();
-            if (isRedScheme)
-            {
-                isRedScheme = true;
-                TManager.ColorScheme = new ColorScheme(Primary.Red800,
-                Primary.Red900, Primary.Red500, Accent.Red200, TextShade.WHITE);
-            }
-            //chekc if is GreenScheme is true set it on green
-            bool isGreenScheme = settingsController.IsGreenScheme();
-            if (isGreenScheme)
-            {
-                isGreenScheme = true;
-                TManager.ColorScheme = new ColorScheme(Primary.Green800,
-                Primary.Green900, Primary.Green500, Accent.LightGreen200, TextShade.WHITE);
-            }
-            //chekc if is OrangeScheme is true set it on orange
-            bool isOrangeScheme = settingsController.IsOrangeScheme();
-            if (isOrangeScheme)
-            {
-                isOrangeScheme = true;
-                TManager.ColorScheme = new ColorScheme(Primary.Orange800,
-                Primary.Orange900, Primary.Orange500, Accent.Orange200, TextShade.WHITE);
-            }
+            SettingsController.SavedSettings();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

@@ -543,7 +543,7 @@
             this.btnMoreToolsCalculator.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnMoreToolsCalculator.Size = new System.Drawing.Size(102, 48);
             this.btnMoreToolsCalculator.TabIndex = 77;
-            this.btnMoreToolsCalculator.Text = "More Tools";
+            this.btnMoreToolsCalculator.Text = "Go back";
             this.btnMoreToolsCalculator.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnMoreToolsCalculator.UseAccentColor = false;
             this.btnMoreToolsCalculator.UseVisualStyleBackColor = false;

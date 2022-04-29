@@ -79,6 +79,7 @@
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\RegisterController.cs" />
     <Compile Include="Controller\RomoTasksController.cs" />
+    <Compile Include="Controller\RomoTimerController.cs" />
     <Compile Include="Controller\SettingsController.cs" />
     <Compile Include="Model\RomoTask.cs">
       <DependentUpon>RomoTimerDBModel.tt</DependentUpon>
@@ -294,7 +295,7 @@
     </Content>
     <Content Include="Resources\Images\invisible eye.png" />
     <Content Include="Resources\Images\visible eye.png" />
-    <Content Include="Resources\Sounds\Three.wav" />
+    <Content Include="Resources\Sounds\TimeOverSound.wav" />
     <Content Include="RomoTimerDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
