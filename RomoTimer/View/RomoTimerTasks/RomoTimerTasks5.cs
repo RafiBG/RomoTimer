@@ -1,0 +1,460 @@
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using RomoTimer.Controller;
+using RomoTimer.Model;
+using RomoTimerForm.Controller;
+using RomoTimerForm.View;
+using System;
+using System.Media;
+using System.Text;
+using System.Windows.Forms;
+
+namespace RomoTimer.View.RomoTimerTasks
+{
+    public partial class RomoTimerTasks5 : MaterialForm
+    {
+        RomoTasksController romoTasksController = new RomoTasksController();
+        private SoundPlayer playBeepSound;
+
+        private int sixty = 60;
+        private int forty = 40;
+        private int timeLeftMinutes;
+        private int timeLeftSeconds;
+        private int timeLeftMinutes2;
+        private int timeLeftSeconds2;
+        private int timeLeftMinutes3;
+        private int timeLeftSeconds3;
+        private int timeLeftMinutes4;
+        private int timeLeftSeconds4;
+        private int timeLeftMinutes5;
+        private int timeLeftSeconds5;
+        private int timeLeftMinutesBreak;
+        private int timeLeftSecondsBreak;
+
+        private MaterialForm _parent;
+        public RomoTimerTasks5(MaterialForm parent)
+        {
+            InitializeComponent();
+
+            playBeepSound = new SoundPlayer(@"C:\Users\Rafi\Desktop\RomoTimer\RomoTimer\Resources\Sounds");
+            _parent = parent;
+
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue800,
+                Primary.Blue900, Primary.Blue500, Accent.LightBlue200, TextShade.WHITE);
+        }
+
+        private void RomoTimerTasks5_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _parent.Show();
+        }
+
+        MaterialSkinManager TManager = MaterialSkinManager.Instance;
+        private void RomoTimerTasks5_Load_1(object sender, EventArgs e)
+        {
+            lblDisplayName.Text = Login.displayName;   //display logged username
+
+            SettingsController settingsController = new SettingsController();
+            bool isDarkTheme = settingsController.IsDarkTheme();
+            if (isDarkTheme)
+            {
+                isDarkTheme = true;
+                TManager.Theme = MaterialSkinManager.Themes.DARK;
+            }
+            else
+            {
+                isDarkTheme = false;
+                TManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            }
+
+            //check if is BlueScheme is true set it on blue
+            bool isBlueScheme = settingsController.IsBlueScheme();
+            if (isBlueScheme)
+            {
+                isBlueScheme = true;
+                TManager.ColorScheme = new ColorScheme(Primary.Blue800,
+                Primary.Blue900, Primary.Blue500, Accent.LightBlue200, TextShade.WHITE);
+            }
+            //check if is RedScheme is true set it on red
+            bool isRedScheme = settingsController.IsRedScheme();
+            if (isRedScheme)
+            {
+                isRedScheme = true;
+                TManager.ColorScheme = new ColorScheme(Primary.Red800,
+                Primary.Red900, Primary.Red500, Accent.Red200, TextShade.WHITE);
+            }
+            //chekc if is GreenScheme is true set it on green
+            bool isGreenScheme = settingsController.IsGreenScheme();
+            if (isGreenScheme)
+            {
+                isGreenScheme = true;
+                TManager.ColorScheme = new ColorScheme(Primary.Green800,
+                Primary.Green900, Primary.Green500, Accent.LightGreen200, TextShade.WHITE);
+            }
+            //chekc if is OrangeScheme is true set it on orange
+            bool isOrangeScheme = settingsController.IsOrangeScheme();
+            if (isOrangeScheme)
+            {
+                isOrangeScheme = true;
+                TManager.ColorScheme = new ColorScheme(Primary.Orange800,
+                Primary.Orange900, Primary.Orange500, Accent.Orange200, TextShade.WHITE);
+            }
+        }
+
+        private void MoreToolsRomoTimer1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MoreToolsRomoTimer1.Show();
+        }
+
+        private void btnTable_Click(object sender, EventArgs e)
+        {
+            var taskTable = new RomoTimerTable(this);
+            this.Hide();
+            taskTable.ShowDialog();
+        }
+
+        private void btnRomoTimer_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtTask1.Text))
+            {
+                MessageBox.Show("Put task in task 1");
+            }
+            else if (String.IsNullOrEmpty(txtTask2.Text))
+            {
+                MessageBox.Show("Put task in task 2");
+            }
+            else if (String.IsNullOrEmpty(txtMinutes.Text))
+            {
+                MessageBox.Show("Put the time you need to finish task 1");
+            }
+            else if (String.IsNullOrEmpty(txtMinutes2.Text))
+            {
+                MessageBox.Show("Put the time you need to finish task 2");
+            }
+            else if (String.IsNullOrEmpty(txtTask3.Text))
+            {
+                MessageBox.Show("Put task in task 3");
+            }
+            else if (String.IsNullOrEmpty(txtMinutes3.Text))
+            {
+                MessageBox.Show("Put the time you need to finish task 3");
+            }
+            else if (String.IsNullOrEmpty(txtTask4.Text))
+            {
+                MessageBox.Show("Put task in task 4");
+            }
+            else if (String.IsNullOrEmpty(txtMinutes4.Text))
+            {
+                MessageBox.Show("Put the time you need to finish task 4");
+            }
+            else if (String.IsNullOrEmpty(txtTask5.Text))
+            {
+                MessageBox.Show("Put task in task 5");
+            }
+            else if (String.IsNullOrEmpty(txtMinutes5.Text))
+            {
+                MessageBox.Show("Put the time you need to finish task 5");
+            }
+            int minutes = (Convert.ToInt32(txtMinutes.Text));
+            this.timeLeftMinutes = minutes * sixty;
+            lblMinutes1.Text = (this.timeLeftMinutes / sixty).ToString("00");
+            this.timeLeftSeconds = forty * sixty;
+            lblSeconds1.Text = (this.timeLeftSeconds % sixty).ToString("00");
+
+            int minutes2 = (Convert.ToInt32(txtMinutes2.Text));
+            this.timeLeftMinutes2 = minutes2 * sixty;
+            lblMinutes2.Text = (this.timeLeftMinutes2 / sixty).ToString("00");
+            this.timeLeftSeconds2 = forty * sixty;
+            lblSeconds2.Text = (this.timeLeftSeconds2 % sixty).ToString("00");
+
+            int minutes3 = (Convert.ToInt32(txtMinutes3.Text));
+            this.timeLeftMinutes3 = minutes3 * sixty;
+            lblMinutes3.Text = (this.timeLeftMinutes3 / sixty).ToString("00");
+            this.timeLeftSeconds3 = forty * sixty;
+            lblSeconds3.Text = (this.timeLeftSeconds3 % sixty).ToString("00");
+
+            int minutes4 = (Convert.ToInt32(txtMinutes4.Text));
+            this.timeLeftMinutes4 = minutes4 * sixty;
+            lblMinutes4.Text = (this.timeLeftMinutes4 / sixty).ToString("00");
+            this.timeLeftSeconds4 = forty * sixty;
+            lblSeconds4.Text = (this.timeLeftSeconds4 % sixty).ToString("00");
+
+            int minutes5 = (Convert.ToInt32(txtMinutes5.Text));
+            this.timeLeftMinutes5 = minutes5 * sixty;
+            lblMinutes5.Text = (this.timeLeftMinutes5 / sixty).ToString("00");
+            this.timeLeftSeconds5 = forty * sixty;
+            lblSeconds5.Text = (this.timeLeftSeconds5 % sixty).ToString("00");
+
+            int totalTime = minutes + minutes2 + minutes3 + minutes4 + minutes5;
+            int hours = totalTime / 60;
+            int min = totalTime % 60;
+
+            RomoTask task = new RomoTask();
+            task.Task1 = txtTask1.Text;
+            task.Task2 = txtTask2.Text;
+            task.Task3 = txtTask3.Text;
+            task.Task4 = txtTask4.Text;
+            task.Task5 = txtTask5.Text;
+            task.TotalTime = hours + ": " + min;
+            task.DateOfCreation = DateTime.Now;
+            task.UsernameOfCreator = Login.displayName;
+            romoTasksController.InsertUser(task);
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            lblMinutes1.Text = (this.timeLeftMinutes = 00).ToString("--");
+            lblSeconds1.Text = (this.timeLeftSeconds = 00).ToString("--");
+        }
+
+        private void btnStart2_Click(object sender, EventArgs e)
+        {
+            timer2.Start();
+        }
+
+        private void btnStop2_Click(object sender, EventArgs e)
+        {
+            timer2.Stop();
+        }
+
+        private void btnReset2_Click(object sender, EventArgs e)
+        {
+            timer2.Stop();
+            lblMinutes2.Text = (this.timeLeftMinutes = 00).ToString("--");
+            lblSeconds2.Text = (this.timeLeftSeconds = 00).ToString("--");
+        }
+
+        private void btnStart3_Click(object sender, EventArgs e)
+        {
+            timer3.Start();
+        }
+
+        private void btnStop3_Click(object sender, EventArgs e)
+        {
+            timer3.Stop();
+        }
+
+        private void btnReset3_Click(object sender, EventArgs e)
+        {
+            timer3.Stop();
+            lblMinutes3.Text = (this.timeLeftMinutes = 00).ToString("--");
+            lblSeconds3.Text = (this.timeLeftSeconds = 00).ToString("--");
+        }
+
+        private void btnStart4_Click(object sender, EventArgs e)
+        {
+            timer4.Start();
+        }
+
+        private void btnStop4_Click(object sender, EventArgs e)
+        {
+            timer4.Stop();
+        }
+
+        private void btnReset4_Click(object sender, EventArgs e)
+        {
+            timer4.Stop();
+            lblMinutes4.Text = (this.timeLeftMinutes = 00).ToString("--");
+            lblSeconds4.Text = (this.timeLeftSeconds = 00).ToString("--");
+        }
+
+        private void btnStart5_Click(object sender, EventArgs e)
+        {
+            timer5.Start();
+        }
+
+        private void btnStop5_Click(object sender, EventArgs e)
+        {
+            timer5.Stop();
+        }
+
+        private void btnReset5_Click(object sender, EventArgs e)
+        {
+            timer5.Stop();
+            lblMinutes5.Text = (this.timeLeftMinutes = 00).ToString("--");
+            lblSeconds5.Text = (this.timeLeftSeconds = 00).ToString("--");
+        }
+
+        private void btnBreakTime_Click(object sender, EventArgs e)
+        {
+            int breakminutes = (Convert.ToInt32(txtBTMinutes.Text));
+            this.timeLeftMinutesBreak = breakminutes * sixty;
+            lblBreakMinutes.Text = (this.timeLeftMinutesBreak / sixty).ToString("00");
+            this.timeLeftSecondsBreak = forty * sixty;
+            lblBreakSeconds.Text = (this.timeLeftSecondsBreak % sixty).ToString("00");
+        }
+
+        private void btnBreakStart_Click(object sender, EventArgs e)
+        {
+            Breaktimer2.Start();
+        }
+
+        private void btnBreakStop_Click(object sender, EventArgs e)
+        {
+            Breaktimer2.Stop();
+        }
+
+        private void btnBreakReset_Click(object sender, EventArgs e)
+        {
+            Breaktimer2.Stop();
+            lblBreakMinutes.Text = (this.timeLeftMinutes = 00).ToString("00");
+            lblBreakSeconds.Text = (this.timeLeftSeconds = 00).ToString("00");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.timeLeftMinutes == 0)
+            {
+                timer1.Stop();
+                playBeepSound.Play();
+                MessageBox.Show("Your time is up.");
+            }
+            else
+            {
+                this.timeLeftMinutes--;
+                this.timeLeftSeconds--;
+                lblMinutes1.Text = (this.timeLeftMinutes / sixty).ToString("00");
+                lblSeconds1.Text = (this.timeLeftSeconds % sixty).ToString("00");
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (this.timeLeftMinutes == 0)
+            {
+                timer2.Stop();
+                playBeepSound.Play();
+                MessageBox.Show("Your time is up.");
+            }
+            else
+            {
+                this.timeLeftMinutes2--;
+                this.timeLeftSeconds2--;
+                lblMinutes2.Text = (this.timeLeftMinutes2 / sixty).ToString("00");
+                lblSeconds2.Text = (this.timeLeftSeconds2 % sixty).ToString("00");
+            }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            if (this.timeLeftMinutes == 0)
+            {
+                timer3.Stop();
+                playBeepSound.Play();
+                MessageBox.Show("Your time is up.");
+            }
+            else
+            {
+                this.timeLeftMinutes3--;
+                this.timeLeftSeconds3--;
+                lblMinutes3.Text = (this.timeLeftMinutes3 / sixty).ToString("00");
+                lblSeconds3.Text = (this.timeLeftSeconds3 % sixty).ToString("00");
+            }
+        }
+
+        private void timer4_Tick(object sender, EventArgs e)
+        {
+            if (this.timeLeftMinutes4 == 0)
+            {
+                timer4.Stop();
+                playBeepSound.Play();
+                MessageBox.Show("Your time is up.");
+            }
+            else
+            {
+                this.timeLeftMinutes4--;
+                this.timeLeftSeconds4--;
+                lblMinutes4.Text = (this.timeLeftMinutes4 / sixty).ToString("00");
+                lblSeconds4.Text = (this.timeLeftSeconds4 % sixty).ToString("00");
+            }
+        }
+
+        private void timer5_Tick(object sender, EventArgs e)
+        {
+            if (this.timeLeftMinutes5 == 0)
+            {
+                timer5.Stop();
+                playBeepSound.Play();
+                MessageBox.Show("Your time is up.");
+            }
+            else
+            {
+                this.timeLeftMinutes5--;
+                this.timeLeftSeconds5--;
+                lblMinutes5.Text = (this.timeLeftMinutes5 / sixty).ToString("00");
+                lblSeconds5.Text = (this.timeLeftSeconds5 % sixty).ToString("00");
+            }
+        }
+
+        private void Breaktimer2_Tick(object sender, EventArgs e)
+        {
+            if (this.timeLeftMinutesBreak == 0)
+            {
+                Breaktimer2.Stop();
+                playBeepSound.Play();
+                MessageBox.Show("Break time is over.");
+            }
+            else
+            {
+                this.timeLeftMinutesBreak--;
+                this.timeLeftSecondsBreak--;
+                lblBreakMinutes.Text = (this.timeLeftMinutesBreak / sixty).ToString("00");
+                lblBreakSeconds.Text = (this.timeLeftSecondsBreak % sixty).ToString("00");
+            }
+        }
+
+        private void txtMinutes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMinutes2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMinutes3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMinutes4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMinutes5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+    }
+}

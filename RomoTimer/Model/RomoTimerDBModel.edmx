@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RomoTimerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RomoTasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Task1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Task2" Type="varchar" MaxLength="50" />
+          <Property Name="Task3" Type="varchar" MaxLength="50" />
+          <Property Name="Task4" Type="varchar" MaxLength="50" />
+          <Property Name="Task5" Type="varchar" MaxLength="50" />
+          <Property Name="TotalTime" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfCreation" Type="date" Nullable="false" />
+          <Property Name="UsernameOfCreator" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsDarkTheme" Type="bit" Nullable="false" />
+          <Property Name="IsBlueScheme" Type="bit" />
+          <Property Name="IsRedScheme" Type="bit" />
+          <Property Name="IsGreenScheme" Type="bit" />
+          <Property Name="IsOrangeScheme" Type="bit" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="First_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Last_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Date_of_creation" Type="date" />
+        </EntityType>
+        <EntityContainer Name="RomoTimerDBModelStoreContainer">
+          <EntitySet Name="RomoTasks" EntityType="Self.RomoTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RomoTimerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsDarkTheme" Type="Boolean" Nullable="false" />
+          <Property Name="IsBlueScheme" Type="Boolean" />
+          <Property Name="IsRedScheme" Type="Boolean" />
+          <Property Name="IsGreenScheme" Type="Boolean" />
+          <Property Name="IsOrangeScheme" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_of_creation" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="RomoTimerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="RomoTasks" EntityType="RomoTimerDBModel.RomoTask" />
+        </EntityContainer>
+        <EntityType Name="RomoTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Task2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Task3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Task4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Task5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfCreation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UsernameOfCreator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RomoTimerDBModelStoreContainer" CdmEntityContainer="RomoTimerDBEntities">
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="RomoTimerDBModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsDarkTheme" ColumnName="IsDarkTheme" />
+                <ScalarProperty Name="IsBlueScheme" ColumnName="IsBlueScheme" />
+                <ScalarProperty Name="IsRedScheme" ColumnName="IsRedScheme" />
+                <ScalarProperty Name="IsGreenScheme" ColumnName="IsGreenScheme" />
+                <ScalarProperty Name="IsOrangeScheme" ColumnName="IsOrangeScheme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RomoTimerDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Date_of_creation" ColumnName="Date_of_creation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RomoTasks">
+            <EntityTypeMapping TypeName="RomoTimerDBModel.RomoTask">
+              <MappingFragment StoreEntitySet="RomoTasks">
+                <ScalarProperty Name="UsernameOfCreator" ColumnName="UsernameOfCreator" />
+                <ScalarProperty Name="DateOfCreation" ColumnName="DateOfCreation" />
+                <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+                <ScalarProperty Name="Task5" ColumnName="Task5" />
+                <ScalarProperty Name="Task4" ColumnName="Task4" />
+                <ScalarProperty Name="Task3" ColumnName="Task3" />
+                <ScalarProperty Name="Task2" ColumnName="Task2" />
+                <ScalarProperty Name="Task1" ColumnName="Task1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
