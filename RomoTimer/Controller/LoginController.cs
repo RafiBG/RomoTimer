@@ -19,14 +19,12 @@ namespace RomoTimerForm.Controller
                     if (user.Username == username && user.Password == password)
                     {
                         isLogged = true;
-                        CurrentUserInfo.Id = user.Id;
-                        
+                        CurrentUserInfo.Id = user.Id;     
                     }
                 }
                 return isLogged;
             }
         }
-
         public bool IsAdmin(string username, string password)
         {
             bool isAdmin = false;

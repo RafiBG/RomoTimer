@@ -13,7 +13,6 @@ namespace RomoTimerForm.View
         public static string displayName = "";        //Save username to show the name of registered user
         public static string displayAdminName = "";   //Save admin name to show it in AdminLoggedView.cs
 
-
         public Login()
         {
             InitializeComponent();
