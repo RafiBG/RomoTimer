@@ -66,29 +66,32 @@ namespace RomoTimer.View.RomoTimerTasks
             {
                 MessageBox.Show("Put the time you need to finish task 2");
             }
-            int minutes = (Convert.ToInt32(txtMinutes.Text));
-            this.timeLeftMinutes = minutes * sixty;
-            lblMinutes1.Text = (this.timeLeftMinutes / sixty).ToString("00");
-            this.timeLeftSeconds = forty * sixty;
-            lblSeconds1.Text = (this.timeLeftSeconds % sixty).ToString("00");
+            else
+            {
+                int minutes = (Convert.ToInt32(txtMinutes.Text));
+                this.timeLeftMinutes = minutes * sixty;
+                lblMinutes1.Text = (this.timeLeftMinutes / sixty).ToString("00");
+                this.timeLeftSeconds = forty * sixty;
+                lblSeconds1.Text = (this.timeLeftSeconds % sixty).ToString("00");
 
-            int minutes2 = (Convert.ToInt32(txtMinutes2.Text));
-            this.timeLeftMinutes2 = minutes2 * sixty;
-            lblMinutes2.Text = (this.timeLeftMinutes2 / sixty).ToString("00");
-            this.timeLeftSeconds2 = forty * sixty;
-            lblSeconds2.Text = (this.timeLeftSeconds2 % sixty).ToString("00");
+                int minutes2 = (Convert.ToInt32(txtMinutes2.Text));
+                this.timeLeftMinutes2 = minutes2 * sixty;
+                lblMinutes2.Text = (this.timeLeftMinutes2 / sixty).ToString("00");
+                this.timeLeftSeconds2 = forty * sixty;
+                lblSeconds2.Text = (this.timeLeftSeconds2 % sixty).ToString("00");
 
-            int totalTime = minutes + minutes2;
-            int hours = totalTime / 60;
-            int min = totalTime % 60;
+                int totalTime = minutes + minutes2;
+                int hours = totalTime / 60;
+                int min = totalTime % 60;
 
-            RomoTask task = new RomoTask();
-            task.Task1 = txtTask1.Text;
-            task.Task2 = txtTask2.Text;
-            task.TotalTime = hours + ": " + min;
-            task.DateOfCreation = DateTime.Now;
-            task.UsernameOfCreator = Login.displayName;
-            romoTasksController.InsertUser(task);
+                RomoTask task = new RomoTask();
+                task.Task1 = txtTask1.Text;
+                task.Task2 = txtTask2.Text;
+                task.TotalTime = hours + ": " + min;
+                task.DateOfCreation = DateTime.Now;
+                task.UsernameOfCreator = Login.displayName;
+                romoTasksController.InsertUser(task);
+            }
         }
 
         private void MoreToolsRomoTimer1_Click(object sender, EventArgs e)

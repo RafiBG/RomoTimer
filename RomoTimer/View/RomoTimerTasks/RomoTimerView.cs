@@ -51,6 +51,8 @@ namespace RomoTimerForm
             {
                 MessageBox.Show("Put the time you need to finish task 1");
             }
+            else
+            {
                 int minutes = (Convert.ToInt32(txtMinutes.Text));
                 this.timeLeftMinutes = minutes * sixty;
                 lblMinutes1.Text = (this.timeLeftMinutes / sixty).ToString("00");
@@ -66,6 +68,7 @@ namespace RomoTimerForm
                 task.TotalTime = hours + ": " + min;
                 task.UsernameOfCreator = Login.displayName;
                 romoTasksController.InsertUser(task);
+            }
         }
 
         public void timer1_Tick(object sender, EventArgs e)

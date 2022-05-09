@@ -7,18 +7,15 @@ using System.Windows.Forms;
 using System.Globalization;
 using RomoTimerForm.View;
 using RomoTimerForm.Controller;
-using RomoTimer.Controller;
 
 namespace RomoTimer.View
 {
     public partial class CurrencyConverter : MaterialForm
     {
         private MaterialForm _parent;
-        public static string number = "";
-        public static string firstCurrency = "";
-        public static string secondCurrency = "";
-        //public static string result = secondC.ToString();
+        
         public string result = "";
+
         public CurrencyConverter(MaterialForm parent)
         {
             InitializeComponent();
@@ -41,7 +38,7 @@ namespace RomoTimer.View
             SettingsController.SavedSettings();
         }
 
-        private async void  Convert()
+        public async void Convert()
         {
             if (String.IsNullOrEmpty(txtNumber.Text))
             {
@@ -142,7 +139,6 @@ namespace RomoTimer.View
 
         private async void btnConvert_Click(object sender, EventArgs e)
         {
-
             Convert();
         }
 

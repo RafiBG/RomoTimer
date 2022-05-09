@@ -36,6 +36,12 @@ namespace RomoTimerForm.View
             _parent.Show();
         }
 
+        public static int RandomNum(int min ,int max)
+        {
+            Random num = new Random();
+            int value = num.Next (min, max + 1);
+            return value;
+        }
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtMin.Text))                          //
@@ -52,10 +58,8 @@ namespace RomoTimerForm.View
                 MessageBox.Show("The minimum number cannot be greater or equal to the maximum number");
             }
             else // If all goes well it continues
-            {
-                Random num = new Random();
-                int value = num.Next(Convert.ToInt32(txtMin.Text),
-                Convert.ToInt32(txtMax.Text) + 1);
+            { 
+                int value = RandomNum(Convert.ToInt32(txtMin.Text), Convert.ToInt32(txtMax.Text));
                 lblNumber.Text = value.ToString();
             }
         }
