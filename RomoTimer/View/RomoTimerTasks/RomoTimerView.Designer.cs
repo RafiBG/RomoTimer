@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RomoTimerView));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnRomoTimer = new MaterialSkin.Controls.MaterialButton();
             this.btnStart = new MaterialSkin.Controls.MaterialButton();
@@ -59,6 +58,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btnRomoTimer
@@ -524,13 +524,14 @@
             // 
             // Breaktimer2
             // 
+            this.Breaktimer2.Interval = 1000;
             this.Breaktimer2.Tick += new System.EventHandler(this.Breaktimer2_Tick);
             // 
             // RomoTimerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 439);
+            this.ClientSize = new System.Drawing.Size(672, 478);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtTask1);
             this.Controls.Add(this.lblLoggedUser);
@@ -546,7 +547,6 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnRomoTimer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "RomoTimerView";
             this.Sizable = false;

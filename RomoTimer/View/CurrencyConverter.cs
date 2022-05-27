@@ -12,8 +12,10 @@ namespace RomoTimer.View
 {
     public partial class CurrencyConverter : MaterialForm
     {
-
         private MaterialForm _parent;
+        public string firstC = "";
+        public string result = "";
+
         public CurrencyConverter(MaterialForm parent)
         {
             InitializeComponent();
@@ -101,409 +103,87 @@ namespace RomoTimer.View
                         {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
                     }
                 };
-                    using (var response = await client.SendAsync(request))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        var body = await response.Content.ReadAsStringAsync();
-                        //lblResult.Text = body;
-                        var bgn = txtNumber.Text;
-                        var num = double.Parse(body);
-                        double Double = 0;
-                        var IsEmpty = double.TryParse(bgn, out Double);
-                        var eur = Math.Round(double.Parse(bgn) * num, 2);
-                        string eur1 = eur.ToString();
-                        lblResult.Text = eur1 + " €";
-                    }
-            }
-
-            else if ("EUR" == cbFirstCurrency.Text && "BGN" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                    using (var response = await client.SendAsync(request))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        var body = await response.Content.ReadAsStringAsync();
-                        //lblResult.Text = body;
-                        var eur = txtNumber.Text;
-                        var num = double.Parse(body);
-                        double Double = 0;
-                        var IsEmpty = double.TryParse(eur, out Double);
-                        var bgn = Math.Round(double.Parse(eur) * num, 2);
-                        string bgn1 = bgn.ToString();
-                        lblResult.Text = bgn1 + " Лв.";
-                    }
-            }
-            else if ("USD" == cbFirstCurrency.Text && "BGN" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                    using (var response = await client.SendAsync(request))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        var body = await response.Content.ReadAsStringAsync();
-                        //lblResult.Text = body;
-                        var usd = txtNumber.Text;
-                        var num = double.Parse(body);
-                        double Double = 0;
-                        var IsEmpty = double.TryParse(usd, out Double);
-                        var bgn = Math.Round(double.Parse(usd) * num, 2);
-                        string bgn1 = bgn.ToString();
-                        lblResult.Text = bgn1 + " Лв.";
-                    }
-            }
-            else if ("BGN" == cbFirstCurrency.Text && "USD" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                    using (var response = await client.SendAsync(request))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        var body = await response.Content.ReadAsStringAsync();
-                        //lblResult.Text = body;
-                        var bgn = txtNumber.Text;
-                        var num = double.Parse(body);
-                        double Double = 0;
-                        var IsEmpty = double.TryParse(bgn, out Double);
-                        var usd = Math.Round(double.Parse(bgn) * num, 2);
-                        string usd1 = usd.ToString();
-                        lblResult.Text = usd1 + " $";
-                    }
-            }
-            else if ("EUR" == cbFirstCurrency.Text && "USD" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {       
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
                 using (var response = await client.SendAsync(request))
                 {
                     response.EnsureSuccessStatusCode();
                     var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var eur = txtNumber.Text;
+                    firstC = txtNumber.Text;
                     var num = double.Parse(body);
                     double Double = 0;
-                    var IsEmpty = double.TryParse(eur, out Double);
-                    var usd = Math.Round(double.Parse(eur) * num, 2);
-                    string usd1 = usd.ToString();
-                    lblResult.Text = usd1 + " $";
+                    var IsEmpty = double.TryParse(firstC, out Double);
+                    var secondC = Math.Round(double.Parse(firstC) * num, 2);
+                    result = secondC.ToString();
+                }
+                if ("BGN" == cbFirstCurrency.Text && "EUR" == cbSecondCurrency.Text) 
+                {
+                    lblResult.Text = result + " €";
+                }
+                else if ("EUR" == cbFirstCurrency.Text && "BGN" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " Лв.";
+                }
+                else if ("USD" == cbFirstCurrency.Text && "BGN" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " Лв.";
+                }
+                else if ("BGN" == cbFirstCurrency.Text && "USD" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " $";
+                }
+                else if ("EUR" == cbFirstCurrency.Text && "USD" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " $";
+                }
+                else if ("USD" == cbFirstCurrency.Text && "EUR" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " €";
+                }
+                else if ("EUR" == cbFirstCurrency.Text && "CAD" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " c$";
+                }
+                else if ("BGN" == cbFirstCurrency.Text && "CAD" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " c$";
+                }
+                else if ("USD" == cbFirstCurrency.Text && "CAD" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " c$";
+                }
+                else if ("CAD" == cbFirstCurrency.Text && "EUR" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " €";
+                }
+                else if ("CAD" == cbFirstCurrency.Text && "BGN" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " Лв.";
+                }
+                else if ("CAD" == cbFirstCurrency.Text && "USD" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = result + " $";
+                }
+                else if ("BGN" == cbFirstCurrency.Text && "BGN" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = firstC + " Лв.";
+                }
+                else if ("USD" == cbFirstCurrency.Text && "USD" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = firstC + " $";
+                }
+                else if ("EUR" == cbFirstCurrency.Text && "EUR" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = firstC + " €";
+                }
+                else if ("CAD" == cbFirstCurrency.Text && "CAD" == cbSecondCurrency.Text)
+                {
+                    lblResult.Text = firstC + " c$";
                 }
             }
-            else if ("USD" == cbFirstCurrency.Text && "EUR" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var usd = txtNumber.Text;
-                    double num = double.Parse(body);
-                    double Double = 0;
-                    var IsEmpty = double.TryParse(usd, out Double);
-                    var eur = Math.Round(double.Parse(usd) * num, 2);
-                    string eur1 = eur.ToString();
-                    lblResult.Text = eur1 + " €";
-                }
-            }
-            else if ("EUR" == cbFirstCurrency.Text && "CAD" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var eur = txtNumber.Text;
-                    double num = double.Parse(body);
-                    double Double = 0;
-                    var IsEmpty = double.TryParse(eur, out Double);
-                    var cad = Math.Round(double.Parse(eur) * num, 2);
-                    string cad1 = cad.ToString();
-                    lblResult.Text = cad1 + " c$";
-                }
-            }
-            else if ("BGN" == cbFirstCurrency.Text && "CAD" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var bgn = txtNumber.Text;
-                    double num = double.Parse(body);
-                    double Double = 0;
-                    var IsEmpty = double.TryParse(bgn, out Double);
-                    var cad = Math.Round(double.Parse(bgn) * num, 2);
-                    string cad1 = cad.ToString();
-                    lblResult.Text = cad1 + " c$";
-                }
-            }
-            else if ("USD" == cbFirstCurrency.Text && "CAD" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var usd = txtNumber.Text;
-                    double num = double.Parse(body);
-                    double Double = 0;
-                    var IsEmpty = double.TryParse(usd, out Double);
-                    var cad = Math.Round(double.Parse(usd) * num, 2);
-                    string cad1 = cad.ToString();
-                    lblResult.Text = cad1 + " c$";
-                }
-            }
-            else if ("CAD" == cbFirstCurrency.Text && "EUR" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var cad = txtNumber.Text;
-                    double num = double.Parse(body);
-                    double Double = 0;
-                    var IsEmpty = double.TryParse(cad, out Double);
-                    var eur = Math.Round(double.Parse(cad) * num, 2);
-                    string eur1 = eur.ToString();
-                    lblResult.Text = eur1 + " €";
-                }
-            }
-            else if ("CAD" == cbFirstCurrency.Text && "BGN" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var cad = txtNumber.Text;
-                    double num = double.Parse(body);
-                    double Double = 0;
-                    var IsEmpty = double.TryParse(cad, out Double);
-                    var bgn = Math.Round(double.Parse(cad) * num, 2);
-                    string bgn1 = bgn.ToString();
-                    lblResult.Text = bgn1 + " Лв.";
-                }
-            }
-            else if ("CAD" == cbFirstCurrency.Text && "USD" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var cad = txtNumber.Text;
-                    double num = double.Parse(body);
-                    double Double = 0;
-                    var IsEmpty = double.TryParse(cad, out Double);
-                    var usd = Math.Round(double.Parse(cad) * num, 2);
-                    string usd1 = usd.ToString();
-                    lblResult.Text = usd1 + " $";
-                }
-            }
-            else if ("BGN" == cbFirstCurrency.Text && "BGN" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var bgn = txtNumber.Text;
-                    lblResult.Text = bgn + " Лв.";
-                }
-            }
-            else if ("USD" == cbFirstCurrency.Text && "USD" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
+        }
 
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var usd = txtNumber.Text;
-                    lblResult.Text = usd + " $";
-                }
-            }
-
-            else if ("EUR" == cbFirstCurrency.Text && "EUR" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var eur = txtNumber.Text;
-                    lblResult.Text = eur + " €";
-                }
-            }
-            else if ("CAD" == cbFirstCurrency.Text && "CAD" == cbSecondCurrency.Text)
-            {
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://currency-exchange.p.rapidapi.com/exchange?from=" + cbFirstCurrency.Text + "&to=" + cbSecondCurrency.Text + "&q=1.0"),
-                    Headers =
-                    {
-                        {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
-                    }
-                };
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var body = await response.Content.ReadAsStringAsync();
-                    //lblResult.Text = body;
-                    var cad = txtNumber.Text;
-                    lblResult.Text = cad + " c$";
-                }
-            }
+        private async void btnConvert_Click(object sender, EventArgs e)
+        {
+            Convert();
         }
 
         private void btnMoreTools_Click(object sender, EventArgs e)

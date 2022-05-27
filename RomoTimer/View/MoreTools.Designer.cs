@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(btnLogout));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.ThemeSwitch = new MaterialSkin.Controls.MaterialSwitch();
@@ -306,7 +305,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 480);
+            this.ClientSize = new System.Drawing.Size(377, 509);
             this.Controls.Add(this.btnLogoutt);
             this.Controls.Add(this.lblLoggedUser);
             this.Controls.Add(this.lblDisplayName);
@@ -317,7 +316,6 @@
             this.Controls.Add(this.btnRomoTimer);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "btnLogout";
             this.Sizable = false;

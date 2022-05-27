@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calculator));
             this.lblCalculation = new System.Windows.Forms.Label();
             this.btn7 = new MaterialSkin.Controls.MaterialButton();
             this.btn4 = new MaterialSkin.Controls.MaterialButton();
@@ -553,7 +552,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 458);
+            this.ClientSize = new System.Drawing.Size(363, 497);
             this.Controls.Add(this.btnMoreToolsCalculator);
             this.Controls.Add(this.lblLoggedUser);
             this.Controls.Add(this.lblDisplayName);
@@ -578,7 +577,6 @@
             this.Controls.Add(this.btn7);
             this.Controls.Add(this.lblCalculation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Calculator";
             this.Sizable = false;
