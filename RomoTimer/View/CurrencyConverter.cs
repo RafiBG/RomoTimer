@@ -100,7 +100,7 @@ namespace RomoTimer.View
                     Headers =
                     {
                         {"x-rapidapi-host", "currency-exchange.p.rapidapi.com"},
-                        {"x-rapidapi-key", "93ea2c64b7msh277a67b3960a414p19b2e7jsncfcc5913efbd"},
+                        {"x-rapidapi-key", "YOUR KEY"},
                     }
                 };
                 using (var response = await client.SendAsync(request))
